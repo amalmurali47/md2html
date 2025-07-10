@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "md2html"
+version = "1.0.0"
+description = "Simple markdown to HTML converter"
+authors = [
+    {name = "Amal Murali", email = "amalmurali47@gmail.com"},
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+dependencies = [
+    "markdown>=3.4,<4.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=6.0",
+    "pytest-cov",
+]
+dev = [
+    "black",
+    "ruff",
+    "mypy",
+    "types-Markdown",
+]
+
+[project.scripts]
+md2html = "md2html:main"
+
+[project.urls]
+Homepage = "https://github.com/amalmurali47/md2html"
+Repository = "https://github.com/amalmurali47/md2html"
+Issues = "https://github.com/amalmurali47/md2html/issues"
+
+[tool.setuptools]
+py-modules = ["md2html"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--verbose"
